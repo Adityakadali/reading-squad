@@ -8,9 +8,9 @@ auth.get("/login", passport.authenticate("discord"));
 auth.get(
   "/discord",
   passport.authenticate("discord", {
-    failureRedirect: "/",
+    failureRedirect: "http://localhost:3000/login",
   }),
   function (req, res) {
-    res.redirect("/info"); // Successful auth
+    res.status(200).redirect("http://localhost:3000/dashboard"); // Successful auth
   }
 );

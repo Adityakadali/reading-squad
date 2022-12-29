@@ -7,12 +7,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "ID is a required feild"],
     },
-    userName: {
+    name: {
       type: String,
       required: [true, "Name is a required feild"],
       maxLength: [50, "Name should be less than 50 charecters"],
     },
-    userDiscriminator: {
+    discriminator: {
       type: String,
       required: [true, "Discriminator is required"],
     },

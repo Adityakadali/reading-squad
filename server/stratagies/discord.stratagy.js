@@ -10,7 +10,14 @@ passport.serializeUser((user, done) => {
 });
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
-  if (user) done(null, user);
+  if (user)
+    done(null, {
+      id: user.id,
+      discordId: user.discordId,
+      name: user.name,
+      discriminator: user.discriminator,
+      avatar: user.avatar,
+    });
 });
 
 const discordStratagy = new DiscordStrategy(
@@ -28,8 +35,8 @@ const discordStratagy = new DiscordStrategy(
       } else {
         const user = await User.create({
           discordId: profile.id,
-          userName: profile.username,
-          userDiscriminator: profile.discriminator,
+          name: profile.username,
+          discriminator: profile.discriminator,
           email: profile.email,
           avatar: profile.avatar,
         });
