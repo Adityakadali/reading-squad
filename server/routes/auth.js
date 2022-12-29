@@ -1,7 +1,12 @@
 import express from "express";
 import passport from "passport";
+import isAuthenticated from "../middleware/isAuthenticated.js";
 
 export const auth = express.Router();
+
+auth.get("/user", isAuthenticated, (req, res) => {
+  res.status(200).json(req.user);
+});
 
 auth.get("/login", passport.authenticate("discord"));
 
