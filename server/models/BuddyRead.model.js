@@ -1,15 +1,19 @@
 import mongoose from "mongoose";
-import Reader from "./Reader.model.js";
+import ReaderSchema from "./Reader.model.js";
 
 const BuddyReadSchema = new mongoose.Schema(
   {
-    bookname: {
+    bookid: {
       type: String,
       required: [true, "Book id is required"],
     },
     readers: {
-      type: [Reader],
+      type: [ReaderSchema],
     },
   },
   { timestamps: true }
 );
+
+const BuddyRead = mongoose.model("BuddyRead", BuddyReadSchema);
+
+export default BuddyRead;

@@ -7,6 +7,4 @@ const ReaderSchema = new mongoose.Schema({
   userName: String,
 });
 
-const Reader = mongoose.model(ReaderSchema);
-
-export default Reader;
+export default ReaderSchema;

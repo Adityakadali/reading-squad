@@ -2,10 +2,10 @@ import express, { urlencoded } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { auth } from "./routes/auth.js";
+import { buddyread } from "./routes/dashboard.js";
 import passport from "passport";
 import session from "express-session";
 import discordStratagy from "./stratagies/discord.stratagy.js";
-
 import isAuthenticated from "./middleware/isAuthenticated.js";
 
 const app = express();
@@ -39,12 +39,6 @@ passport.use(discordStratagy);
 
 app.use("/auth", auth);
 
-app.get("/info", isAuthenticated, (req, res) => {
-  console.log(req.cookies, req.user);
-  res.status(200).json({
-    status: 200,
-    message: "success from server",
-  });
-});
+app.use("/dashboard", buddyread);
 
 export default app;

@@ -8,8 +8,6 @@ auth.get("/user", isAuthenticated, (req, res) => {
   res.status(200).json(req.user);
 });
 
-auth.get("/login", passport.authenticate("discord"));
-
 auth.get(
   "/discord",
   passport.authenticate("discord", {
